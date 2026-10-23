@@ -1,0 +1,48 @@
+stages:
+  - release
+
+# Manual on purpose: running this publishes the ZIP to the LittleBig.Co update server,
+# where every installed copy will pick it up. Needs the free product (is_free = 1) to exist.
+release_to_update_server:
+  stage: release
+  image: php:8.4-cli
+  before_script:
+    - apt-get update -qq && apt-get install -y -qq zip rsync curl python3-pip
+    - pip3 install -q awscli --break-system-packages
+  script:
+    - export AWS_ACCESS_KEY_ID="$R2_ACCESS_KEY_ID"
+    - export AWS_SECRET_ACCESS_KEY="$R2_SECRET_ACCESS_KEY"
+    - export AWS_DEFAULT_REGION="auto"
+    - export VERSION=$(grep -m1 '^\s*\*\s*Version:' cronhelm.php | sed -E 's/.*Version:[[:space:]]*//' | tr -d '[:space:]')
+    - export MIN_WP=$(grep -m1 '^\s*\*\s*Requires at least:' cronhelm.php | sed -E 's/.*Requires at least:[[:space:]]*//' | tr -d '[:space:]')
+    - export MIN_PHP=$(grep -m1 '^\s*\*\s*Requires PHP:' cronhelm.php | sed -E 's/.*Requires PHP:[[:space:]]*//' | tr -d '[:space:]')
+    - export TESTED_WP=$(grep -m1 '^Tested up to:' readme.txt | sed -E 's/.*Tested up to:[[:space:]]*//' | tr -d '[:space:]')
+    - echo "Building cronhelm v${VERSION} from ${CI_COMMIT_SHA} (WP ${MIN_WP}, PHP ${MIN_PHP}, tested ${TESTED_WP})"
+    - test "$(grep -m1 "CRONHELM_VERSION = " cronhelm.php | sed -E "s/.*'([^']+)'.*/\1/")" = "$VERSION"
+    - mkdir -p cronhelm
+    - rsync -a
+        --exclude 'cronhelm'
+        --exclude '.git'
+        --exclude '.gitignore'
+        --exclude '.gitlab-ci.yml'
+        --exclude 'composer.json'
+        --exclude 'composer.lock'
+        --exclude '*.zip'
+        ./ cronhelm/
+    - zip -r "cronhelm-${VERSION}.zip" cronhelm
+    - export ZIP_KEY="cronhelm/${VERSION}/cronhelm-${VERSION}.zip"
+    - aws s3 cp "cronhelm-${VERSION}.zip"
+        "s3://littlebig-plugin-zips/${ZIP_KEY}"
+        --endpoint-url "https://${CF_ACCOUNT_ID}.r2.cloudflarestorage.com"
+    - >
+      curl -sS -f -X POST "https://license.littlebig.co/v1/admin/versions"
+      -H "Authorization: Bearer ${LITTLEBIG_CORE_ADMIN_TOKEN}"
+      -H "Content-Type: application/json"
+      -d "{\"product_id\":\"prod-cronhelm-01\",\"version\":\"${VERSION}\",\"zip_key\":\"${ZIP_KEY}\",\"changelog\":\"See readme.txt\",\"min_wp\":\"${MIN_WP}\",\"min_php\":\"${MIN_PHP}\",\"tested_wp\":\"${TESTED_WP}\"}"
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main"'
+      when: manual
+  artifacts:
+    paths:
+      - "cronhelm-*.zip"
+    expire_in: 7 days

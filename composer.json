@@ -1,0 +1,43 @@
+{
+	"name": "littlebig/cronhelm",
+	"description": "View, edit, run, pause and schedule WP-Cron events and custom cron schedules from your WordPress admin",
+	"homepage": "https://gitlab.com/wordpress-plugins1863212/cronhelm",
+	"license": "GPL-2.0-or-later",
+	"type": "wordpress-plugin",
+	"authors": [
+		{
+			"name": "LittleBig.Co",
+			"homepage": "https://littlebig.co"
+		},
+		{
+			"name": "John Blackbourn",
+			"homepage": "https://johnblackbourn.com/"
+		},
+		{
+			"name": "Edward Dale",
+			"homepage": "http://scompt.com/"
+		}
+	],
+	"config": {
+		"sort-packages": true,
+		"preferred-install": "dist",
+		"prepend-autoloader": false,
+		"classmap-authoritative": true,
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true,
+			"roots/wordpress-core-installer": true
+		}
+	},
+	"require": {
+		"php": ">=7.4"
+	},
+	"autoload": {
+		"classmap": [
+			"src"
+		]
+	},
+	"support": {
+		"issues": "https://gitlab.com/wordpress-plugins1863212/cronhelm/-/issues",
+		"source": "https://gitlab.com/wordpress-plugins1863212/cronhelm"
+	}
+}
