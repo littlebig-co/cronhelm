@@ -12,6 +12,8 @@ PHP 7.4+, no build step. The Composer classmap in `vendor/` is committed, so aft
 
 ## Release
 
+GitLab (`source`) is the working repository and runs CI. GitHub (`github`) is the public copy: push to both, `git push source main && git push github main`.
+
 Bump the version in `cronhelm.php` (header and `CRONHELM_VERSION`) and the changelog in `readme.txt`, push to `main`, then run the manual `release_to_update_server` job in GitLab CI. It builds the ZIP, uploads it to R2 and registers the version with the LittleBig.Co update server.
 
 ## License
