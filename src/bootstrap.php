@@ -64,7 +64,7 @@ function init_hooks() {
 			'version'          => CRONHELM_VERSION,
 			'api_url'          => 'https://license.littlebig.co',
 			'license_required' => false,
-			'purchase_url'     => 'https://gitlab.com/wordpress-plugins1863212/cronhelm',
+			'purchase_url'     => 'https://github.com/littlebig-co/cronhelm',
 		)
 	);
 
@@ -1074,7 +1074,7 @@ function admin_help_tab() {
 		sprintf(
 			/* translators: 1: URL to the documentation, 2: Cronhelm */
 			__( '<a href="%1$s">Read the %2$s website</a> which contains information about events that have missed their schedule, problems with spawning a call to the WP-Cron system, and much more.', 'cronhelm' ),
-			'https://gitlab.com/wordpress-plugins1863212/cronhelm',
+			'https://github.com/littlebig-co/cronhelm',
 			'Cronhelm'
 		),
 		array(
@@ -1089,7 +1089,7 @@ function admin_help_tab() {
 		sprintf(
 			/* translators: %s: URL to the documentation */
 			__( '<a href="%s">Read the Frequently Asked Questions (FAQ)</a> which cover many common questions and answers.', 'cronhelm' ),
-			'https://gitlab.com/wordpress-plugins1863212/cronhelmfaq/'
+			'https://github.com/littlebig-co/cronhelmfaq/'
 		),
 		array(
 			'a' => array(
@@ -1142,7 +1142,7 @@ function plugin_action_links( $actions ) {
 		),
 		'cronhelm-help' => sprintf(
 			'<a href="%s">%s</a>',
-			'https://gitlab.com/wordpress-plugins1863212/cronhelm',
+			'https://github.com/littlebig-co/cronhelm',
 			esc_html__( 'Help', 'cronhelm' )
 		),
 	);
@@ -1160,7 +1160,7 @@ function network_plugin_action_links( $actions ) {
 	$new = array(
 		'cronhelm-help' => sprintf(
 			'<a href="%s">%s</a>',
-			'https://gitlab.com/wordpress-plugins1863212/cronhelm',
+			'https://github.com/littlebig-co/cronhelm',
 			esc_html__( 'Help', 'cronhelm' )
 		),
 	);
@@ -1415,7 +1415,7 @@ function show_cron_status() {
 			sprintf(
 				'%1$s<br><br><a href="%2$s">%3$s</a>',
 				esc_html__( 'PHP default timezone is not set to UTC. This may cause issues with cron event timings.', 'cronhelm' ),
-				'https://gitlab.com/wordpress-plugins1863212/cronhelm',
+				'https://github.com/littlebig-co/cronhelm',
 				esc_html__( 'More information', 'cronhelm' )
 			),
 			array(
@@ -1445,7 +1445,7 @@ function show_cron_status() {
 						esc_html__( 'There was a problem spawning a call to the WP-Cron system on your site. This means WP-Cron events on your site may not work. The problem was: %s', 'cronhelm' ),
 						'<br><br><strong>' . esc_html( $status->get_error_message() ) . '</strong>'
 					),
-					'https://gitlab.com/wordpress-plugins1863212/cronhelm',
+					'https://github.com/littlebig-co/cronhelm',
 					esc_html__( 'More information', 'cronhelm' )
 				),
 				array(
@@ -1798,7 +1798,7 @@ function show_cron_form( $editing ) {
 									sprintf(
 										'%1$s<br><br><a href="%2$s">%3$s</a>',
 										esc_html__( 'The URL in this event needs to be checked for integrity. This event will not run until you re-save it.', 'cronhelm' ),
-										'https://gitlab.com/wordpress-plugins1863212/cronhelm',
+										'https://github.com/littlebig-co/cronhelm',
 										esc_html__( 'Read what to do', 'cronhelm' )
 									),
 									array(
@@ -1857,7 +1857,7 @@ function show_cron_form( $editing ) {
 									sprintf(
 										'%1$s<br><br><a href="%2$s">%3$s</a>',
 										esc_html__( 'The PHP code in this event needs to be checked for integrity. This event will not run until you re-save it.', 'cronhelm' ),
-										'https://gitlab.com/wordpress-plugins1863212/cronhelm',
+										'https://github.com/littlebig-co/cronhelm',
 										esc_html__( 'Read what to do', 'cronhelm' )
 									),
 									array(
@@ -2743,7 +2743,7 @@ function json_output( $input, $pretty = true ) {
  * If an attacker with database-level access were to modify the URL in an event in an attempt to fetch an arbitrary
  * URL (for example to perform an SSRF), the HTTP request would not be performed.
  *
- * @link https://gitlab.com/wordpress-plugins1863212/cronhelm
+ * @link https://github.com/littlebig-co/cronhelm
  *
  * @throws \Cronhelm\Exception\MissingURLException
  * @throws \Cronhelm\Exception\MissingHashException
@@ -2887,7 +2887,7 @@ function action_url_cron_event( array $args ): void {
  * If an attacker with database-level access were to modify the PHP code in an event in an attempt to execute arbitrary
  * code, the code would no longer execute.
  *
- * @link https://gitlab.com/wordpress-plugins1863212/cronhelm
+ * @link https://github.com/littlebig-co/cronhelm
  *
  * @throws \Cronhelm\Exception\MissingHashException
  * @throws \Cronhelm\Exception\InvalidHashException

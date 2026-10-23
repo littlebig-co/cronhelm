@@ -4,7 +4,7 @@ Tags: cron, wp-cron, scheduled events, debug, action scheduler
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPL v2 or later
 License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
@@ -44,7 +44,7 @@ Cronhelm is a fork of WP Crontrol 1.22.0 by John Blackbourn and Edward Dale, rel
 
 = Why is the plugin not on WordPress.org? =
 
-It updates itself from its own server. The code is free and open source, and you can read it in the repository: https://gitlab.com/wordpress-plugins1863212/cronhelm
+It updates itself from its own server. The code is free and open source, and you can read it in the repository: https://github.com/littlebig-co/cronhelm
 
 = Can I run PHP and URL cron events? =
 
@@ -55,6 +55,9 @@ Yes, if your user may edit files. Both kinds are protected by an integrity hash 
 Privately, by email to hello@littlebig.co. See SECURITY.md in the repository.
 
 == Changelog ==
+
+= 1.0.1 =
+* Links now point to the public GitHub repository.
 
 = 1.0.0 =
 * First release as Cronhelm, based on WP Crontrol 1.22.0.

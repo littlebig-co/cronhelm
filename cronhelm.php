@@ -1,12 +1,12 @@
 <?php
 /**
  * Plugin Name:  Cronhelm
- * Plugin URI:   https://gitlab.com/wordpress-plugins1863212/cronhelm
+ * Plugin URI:   https://github.com/littlebig-co/cronhelm
  * Description:  View, edit, run, pause and schedule WP-Cron events and custom cron schedules from your WordPress admin. Free, private by default.
  * Author:       LittleBig.Co (based on work by John Blackbourn and Edward Dale)
  * Author URI:   https://littlebig.co
  * Update URI:   https://license.littlebig.co/v1/update/cronhelm
- * Version:      1.0.0
+ * Version:      1.0.1
  * Text Domain:  cronhelm
  * Domain Path:  /languages/
  * Requires at least: 6.6
@@ -31,13 +31,13 @@
  * @author     John Blackbourn & Edward Dale
  * @copyright  Copyright 2008 Edward Dale, 2012-2026 John Blackbourn, 2026 LittleBig.Co
  * @license    https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt GPL 2.0
- * @link       https://gitlab.com/wordpress-plugins1863212/cronhelm
+ * @link       https://github.com/littlebig-co/cronhelm
  */
 
 namespace Cronhelm;
 
 const PLUGIN_FILE = __FILE__;
-const CRONHELM_VERSION = '1.0.0';
+const CRONHELM_VERSION = '1.0.1';
 
 if ( ! defined( 'ABSPATH' ) ) {
 	header( 'HTTP/1.1 403 Forbidden' );
